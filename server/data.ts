@@ -1,0 +1,138 @@
+import type { Client, Invoice, SeedState, User } from './types'
+
+const seedUsers: User[] = [
+  {
+    id: 'usr-admin',
+    name: 'Micaela Flores',
+    email: 'admin@leasy.pe',
+    password: 'Leasy2026!',
+    role: 'admin',
+    team: 'Operations',
+  },
+  {
+    id: 'usr-ops',
+    name: 'Diego Ramos',
+    email: 'ops@leasy.pe',
+    password: 'Leasy2026!',
+    role: 'ops',
+    team: 'Operations',
+  },
+  {
+    id: 'usr-audit',
+    name: 'Sara Prado',
+    email: 'audit@leasy.pe',
+    password: 'Leasy2026!',
+    role: 'viewer',
+    team: 'Audit',
+  },
+]
+
+const seedClients: Client[] = [
+  {
+    id: 'cli-001',
+    fullName: 'Ana Torres',
+    email: 'ana.torres@leasy.pe',
+    document: '72318455',
+    city: 'Lima',
+    segment: 'Nuevos',
+    risk: 'LOW',
+    createdAt: '2026-03-10T10:30:00.000Z',
+  },
+  {
+    id: 'cli-002',
+    fullName: 'Jose Mendoza',
+    email: 'jose.mendoza@leasy.pe',
+    document: '41682091',
+    city: 'Arequipa',
+    segment: 'Renovacion',
+    risk: 'MEDIUM',
+    createdAt: '2026-03-11T11:00:00.000Z',
+  },
+  {
+    id: 'cli-003',
+    fullName: 'Camila Sosa',
+    email: 'camila.sosa@leasy.pe',
+    document: '46581922',
+    city: 'Cusco',
+    segment: 'Cobranza',
+    risk: 'HIGH',
+    createdAt: '2026-03-13T13:10:00.000Z',
+  },
+  {
+    id: 'cli-004',
+    fullName: 'Luis Guerra',
+    email: 'luis.guerra@leasy.pe',
+    document: '47728261',
+    city: 'Trujillo',
+    segment: 'Nuevos',
+    risk: 'LOW',
+    createdAt: '2026-03-18T15:40:00.000Z',
+  },
+]
+
+const seedInvoices: Invoice[] = [
+  {
+    id: 'inv-001',
+    contractCode: 'CT-PE-3101',
+    clientId: 'cli-001',
+    baseAmount: 1250,
+    couponCode: 'WELCOME50',
+    couponAmount: 50,
+    totalAmount: 1200,
+    status: 'PENDING',
+    notes: 'Cliente con onboarding completo.',
+    dueDate: '2026-03-29T00:00:00.000Z',
+    updatedAt: '2026-03-24T18:00:00.000Z',
+    createdBy: 'ops@leasy.pe',
+  },
+  {
+    id: 'inv-002',
+    contractCode: 'CT-PE-3102',
+    clientId: 'cli-002',
+    baseAmount: 980,
+    couponCode: '',
+    couponAmount: 0,
+    totalAmount: 980,
+    status: 'FROZEN',
+    notes: 'Factura en revision por cobranza.',
+    dueDate: '2026-03-28T00:00:00.000Z',
+    updatedAt: '2026-03-23T14:30:00.000Z',
+    createdBy: 'admin@leasy.pe',
+  },
+  {
+    id: 'inv-003',
+    contractCode: 'CT-PE-3103',
+    clientId: 'cli-003',
+    baseAmount: 750,
+    couponCode: '',
+    couponAmount: 0,
+    totalAmount: 750,
+    status: 'DRAFT',
+    notes: 'Esperando validacion final del area comercial.',
+    dueDate: '2026-04-02T00:00:00.000Z',
+    updatedAt: '2026-03-22T11:10:00.000Z',
+    createdBy: 'ops@leasy.pe',
+  },
+  {
+    id: 'inv-004',
+    contractCode: 'CT-PE-3104',
+    clientId: 'cli-004',
+    baseAmount: 1460,
+    couponCode: 'LOYALTY10',
+    couponAmount: 10,
+    totalAmount: 1450,
+    status: 'PAID',
+    notes: 'Pago confirmado via backoffice.',
+    dueDate: '2026-03-26T00:00:00.000Z',
+    updatedAt: '2026-03-21T09:30:00.000Z',
+    createdBy: 'admin@leasy.pe',
+  },
+]
+
+export function createSeedState(): SeedState {
+  return {
+    users: structuredClone(seedUsers),
+    clients: structuredClone(seedClients),
+    invoices: structuredClone(seedInvoices),
+  }
+}
